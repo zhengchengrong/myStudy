@@ -1,0 +1,6 @@
+上传文件到linux上, 是上传到当前所在的目录下
+yum list|grep lrzsz
+sudo yum -y install lrzsz.x86_64
+命令:(参数 -y 如果linux上有相同的文件, 会覆盖)
+	rz
+	rz -y

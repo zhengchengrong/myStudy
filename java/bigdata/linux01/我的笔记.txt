@@ -1,0 +1,58 @@
+工作IP：
+
+子网IP：192.168.153.0
+
+网关IP: 192.168.153.2
+
+
+04.Linux常用软件安装
+	1.修改主机名
+			
+	vi /etc/sysconfig/network
+	
+	NETWORKING=yes
+	HOSTNAME=server01
+
+	2.2.修改ip地址
+	vi /etc/sysconfig/network-scripts/ifcfg-eth0
+	DEVICE=eth0
+	TYPE=Ethernet
+	ONBOOT=yes
+	BOOTPROTO=static
+	IPADDR=192.168.153.101 (注意这里要设置DHCP，起始IP和结束IP)
+	NETMASK=255.255.255.0
+
+	生效：service network restart
+
+
+	3. 修改Ip地址和主机名的映射关系
+
+	vi /etc/hosts
+	192.168.153.101 server01
+	4.关闭iptables并设置其开机启动/不启动
+	service iptables stop
+	chkconfig iptables on
+	chkconfig iptables off
+
+	延展：iptables防火墙的启动、停止以及开启关闭端口的操作
+	
+	https://blog.csdn.net/lg632/article/details/72731435/
+
+
+	上面配完还不能访问网络，连接外网还需要配置网关
+	
+	https://blog.csdn.net/zhaolimin6666/article/details/52897198
+
+
+	vmware三种网络模式
+
+	http://net.zol.com.cn/640/6403251.html
+	路由器提供防火墙的服务，交换机不能提供该功能。集线器、交换机都是做端口扩展的，就是扩大局域网(通常都是以太网)的接入点，也就是能让局域网可以连进来更多的电脑。 路由器是用来做网间连接，也就是用来连接不同的网络。
+
+
+最后我从不专业的角度简单说一下家用交换机和路由器的区别。家用交换机主要起到线路连通的功用，比如你家里有三台电脑，希望组建一个局域网，那么每台电脑拉出一根网线到交换机上，那么这三台电脑就组成了一个网，可以相互连通和共享文件。路由器呢，它也可以当普通交换机使用，具备交换机的线路连通的功能。但是路由器还有个功能交换机没有，那就是拨号上网功能
+
+你家里有三台电脑需要同时上网，猫就一个，怎么办，用路由器就能轻松解决，但是交换机不行。不过家用路由器一般都是4个口的，如果电脑过多，比如单位有几十台电脑，那么单靠路由是不行了，需要交换机来撑住场面，交换机一般有4口、8口、16口、24口，能接入更多的电脑。
+
+
+
